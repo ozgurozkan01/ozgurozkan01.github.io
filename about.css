@@ -1,0 +1,270 @@
+        /* --- GLOBAL DEĞİŞKENLER (MATTE THEME) --- */
+        :root {
+            --bg-dark: #050a14;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+            --card-bg: rgba(20, 30, 50, 0.5);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent: #1d59ca;
+            --accent2: #00c896;
+            --signature: #2072b6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- ARKA PLAN --- */
+        #network-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+
+
+        .about-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            /* Sol ve Sağ oran */
+            gap: 4rem;
+            padding: 140px 10% 4rem;
+            align-items: center;
+        }
+
+        /* SOL: PROFILE INFO */
+        .profile-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .profile-content .subtitle {
+            font-family: 'JetBrains Mono';
+            color: var(--primary);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        .profile-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .terminal-wrapper {
+            width: 100%;
+            max-width: 650px;
+            background: #0d1117;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-bar {
+            background: #161b22;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .t-title {
+            font-size: 0.8rem;
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-screen {
+            padding: 25px;
+            height: 400px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Scrollbar Gizleme */
+        .terminal-screen::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Terminal Renkleri (JS için gerekli) */
+        .log-line {
+            margin-bottom: 12px;
+            display: block;
+            line-height: 1.6;
+        }
+
+        .txt-cmd {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .txt-dim {
+            color: #64748b;
+        }
+
+        .txt-green {
+            color: #00ff9d;
+        }
+
+        .txt-cyan {
+            color: var(--primary);
+        }
+
+        .blink-cursor {
+            animation: blink 1s infinite;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Scanline Efekti */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 242, 255, 0.1);
+            animation: scan 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0%;
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Mobil */
+        @media (max-width: 900px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                padding-top: 120px;
+                text-align: center;
+            }
+
+            .social-row {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .about {
+            line-height: 1.6;
+            font-size: 1rem;
+            color: #dbe9f8;
+            /* hafif açık text, dark arka plan için */
+        }
+
+        /* Primary highlights: technologies / domains */
+        .accent {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color .15s ease, transform .12s ease;
+        }
+
+        .accent:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Secondary highlights: personal traits / originality */
+        .accent2 {
+            color: var(--accent2);
+            font-weight: 600;
+        }
+
+        /* Final signature emphasis */
+        .signature {
+            color: var(--accent);
+            font-weight: 700;
+            background: rgba(0, 242, 255, 0.04);
+            /* subtle glow */
+            padding: 0 .15rem;
+            border-radius: 4px;
+        }
+
+        /* Responsive tweak: slightly larger text on wide screens */
+        @media (min-width: 1000px) {
+            .about {
+                font-size: 1.05rem;
+            }
+        }

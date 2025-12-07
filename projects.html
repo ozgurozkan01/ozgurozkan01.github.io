@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Ozgur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="include-navbar"></div>
+
+    <canvas id="network-canvas"></canvas>
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">Projects</h1>
+            <span>Original and share-worthy major projects are featured here. For smaller or different projects, please check out my <a href="https://github.com/ozgurozkan01" target="_blank" class="btn-icon" aria-label="GitHub">GitHub account</a>. </span>
+        </div>
+
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="folder-icon"><i class="fas fa-bug"></i></div>
+                    <div class="card-actions">
+                        <a href="https://github.com/ozgurozkan01/metamorphic_malware_generator" class="action-btn"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="p-title">Metamorphic Malware Generator</h3>
+                <p class="p-desc">
+                    This is a malware generator that is using malware techniques to change its structure and manipulate AV systems z.  
+                </p>
+                <div class="tech-list">
+                    <span class="tech-item">Python (Generator)</span>
+                    <span class="tech-item">Assembly (Implementation)</span>
+                    <span class="tech-item">C++ (Malware)</span>
+                </div>
+                <span class="status-pill status-completed">COMPLETED</span>
+            </div>
+
+            <div class="project-card">
+                <div class="card-header">
+                    <div class="folder-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="card-actions">
+                        <a href="https://github.com/ozgurozkan01/linux-log-analyses-reporter" class="action-btn"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="p-title">Mini SIEM Solution</h3>
+                <p class="p-desc">
+                    This a custom linux-based SIEM Solution. Fundamentally, it logs ssh, sudo, audit, file integrity and firewall logs. 
+                </p>
+                <div class="tech-list">
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">Flask</span>
+                    <span class="tech-item">Linux</span>
+                    <span class="tech-item">SQLite</span>
+                </div>
+                <span class="status-pill status-progress">IN PROGRESS</span>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../js/projects.js"></script>
+</body>
+</html>

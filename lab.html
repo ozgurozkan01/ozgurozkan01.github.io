@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Infrastructure | Ozgur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/lab.css">
+
+</head>
+
+<body>
+
+    <canvas id="network-canvas"></canvas>
+    <div id="include-navbar"></div>
+    <main>
+        <div class="lab-header">
+            <h1 class="lab-title">Enterprise Security Lab</h1>
+            <p class="lab-desc">
+                A fully isolated, virtualized corporate security environment designed to simulate
+                defense strategies, and log analysis.
+            </p>
+        </div>
+
+
+        <div class="topology-container">
+
+            <div class="topology-header">
+                <div class="header-title">
+                    <h2><i class="fas fa-project-diagram"></i> Active Domain Topology</h2>
+                    <span class="header-subtitle">Live Network State</span>
+                </div>
+                <div class="system-status">
+                    <span class="blink-dot"></span> LAB RUNNING
+                </div>
+            </div>
+
+            <div class="grid-bg"></div>
+
+            <svg class="connections-svg">
+                <defs>
+                    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+                        <stop offset="50%" style="stop-color:#00f2ff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+                    </linearGradient>
+                </defs>
+
+                <path d="M 100 300 L 250 300" class="cable"></path>
+                <path d="M 100 300 L 250 300" class="cable-flow"></path>
+
+                <path d="M 250 300 C 350 300, 350 200, 450 200" class="cable"></path>
+                <path d="M 250 300 C 350 300, 350 200, 450 200" class="cable-flow" style="animation-delay: 0.5s"></path>
+
+                <path d="M 250 300 C 350 300, 350 400, 450 400" class="cable"></path>
+                <path d="M 250 300 C 350 300, 350 400, 450 400" class="cable-flow" style="animation-delay: 0.5s"></path>
+
+                <path d="M 450 200 C 550 200, 550 150, 700 150" class="cable"></path>
+                <path d="M 450 200 C 550 200, 550 150, 700 150" class="cable-flow" style="animation-delay: 1.2s"></path>
+
+                <path d="M 450 400 C 550 400, 550 150, 700 150" class="cable"></path>
+                <path d="M 450 400 C 550 400, 550 150, 700 150" class="cable-flow" style="animation-delay: 1.4s"></path>
+
+                <path d="M 450 200 C 550 200, 550 450, 700 450" class="cable"></path>
+                <path d="M 450 200 C 550 200, 550 450, 700 450" class="cable-flow" style="animation-delay: 1.4s"></path>
+
+                <path d="M 450 400 C 550 400, 550 450, 700 450" class="cable"></path>
+                <path d="M 450 400 C 550 400, 550 450, 700 450" class="cable-flow" style="animation-delay: 1.2s"></path>
+
+            </svg>
+
+            <div class="node" style="left: 100px; top: 300px;" title="Internet">
+                <div class="node-icon"><i class="fas fa-globe"></i></div>
+                <div class="node-label">Internet</div>
+            </div>
+
+            <div class="node firewall" style="left: 250px; top: 300px;" title="OPNsense">
+                <div class="node-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="node-label">OPNsense</div>
+            </div>
+
+            <div class="node client" style="left: 450px; top: 200px;" title="Windows 10">
+                <div class="node-icon"><i class="fas fa-desktop"></i></div>
+                <div class="node-label">Win 10</div>
+            </div>
+
+            <div class="node client" style="left: 450px; top: 400px;" title="Ubuntu">
+                <div class="node-icon"><i class="fab fa-linux"></i></div>
+                <div class="node-label">Ubuntu</div>
+            </div>
+
+            <div class="node siem" style="left: 700px; top: 150px;" title="Wazuh">
+                <div class="node-icon"><i class="fas fa-eye"></i></div>
+                <div class="node-label">Wazuh</div>
+            </div>
+
+            <div class="node ad" style="left: 700px; top: 450px;" title="Active Directory">
+                <div class="node-icon"><i class="fab fa-windows"></i></div>
+                <div class="node-label">Active Dir.</div>
+            </div>
+
+        </div>
+
+        <div class="roadmap-container">
+            <h2 class="roadmap-title">Future Integrations & Roadmap</h2>
+
+            <div class="roadmap-items">
+                <div class="rm-item">
+                    <div class="rm-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="rm-text">
+                        <h4>NGFW</h4>
+                        <p>Making OPNSense NGFW by downloading extra packets</p>
+                    </div>
+                </div>
+                <div class="rm-item">
+                    <div class="rm-icon"><i class="fas fa-lock"></i></div>
+                    <div class="rm-text">
+                        <h4>VPN Server</h4>
+                        <p>Setting up VPN function via OPNSense Firewall for secure remote access simulation.</p>
+                    </div>
+                </div>
+
+                <div class="rm-item">
+                    <div class="rm-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="rm-text">
+                        <h4>EDR/XDR</h4>
+                        <p>Implementing open-source EDR/XDR to test advanced endpoint protection.</p>
+                    </div>
+                </div>
+
+                <div class="rm-item">
+                    <div class="rm-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="rm-text">
+                        <h4>IPS/IDS</h4>
+                        <p>Implementing IPS/IDS via OPNSense Firewall and Suricata.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <section class="lab-details-section">
+            <h2 class="details-title">Architecture Deep Dive</h2>
+
+            <div class="detail-row">
+                <div class="detail-content">
+                    <h3 class="dc-title"><i class="fab fa-windows dc-icon"></i> Identity & Access Management</h3>
+                    <p class="dc-text">
+                        The backbone of the lab is a <strong>Windows Server 2022</strong> Domain Controller.
+                        I configured realistic organizational units (OUs) reflecting a typical corporate hierarchy (HR,
+                        IT, Sales).
+                        <br><br>
+                        Key configurations include strictly defined <strong>Group Policy Objects (GPOs)</strong>
+                        to disable Windows Defender on victim machines (for testing) and enforce audit logging for SIEM
+                        ingestion.
+                    </p>
+                    <div class="dc-tags">
+                        <span class="dc-tag">Kerberos</span>
+                        <span class="dc-tag">LDAP</span>
+                        <span class="dc-tag">DNS/DHCP</span>
+                        <span class="dc-tag">GPO Hardening</span>
+                    </div>
+                </div>
+
+                <div class="detail-visual">
+                    <div class="corner-decor c-tl"></div>
+                    <div class="corner-decor c-br"></div>
+
+                    <div style="color: #444; font-family:'JetBrains Mono'">[ SCREENSHOT: AD DASHBOARD ]</div>
+                </div>
+            </div>
+
+            <div class="detail-row reverse">
+                <div class="detail-content" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <h3 class="dc-title" style="color:#fff"><i class="fas fa-shield-virus"
+                            style="color:var(--warning)"></i> Perimeter Security</h3>
+                    <p class="dc-text">
+                        <strong>OPNsense</strong> acts as the gateway between the WAN and the isolated lab network.
+                        It is configured with strict firewall rules to allow only necessary outbound traffic while
+                        blocking all non-VPN inbound connections.
+                        <br><br>
+                        I enabled <strong>Suricata IPS</strong> in promiscuous mode to inspect lateral movement traffic
+                        between the User VLAN and the Server VLAN.
+                    </p>
+                    <div class="dc-tags">
+                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">VLAN
+                            Segmentation</span>
+                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">Suricata
+                            IPS</span>
+                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">Deep Packet
+                            Inspection</span>
+                    </div>
+                </div>
+
+                <div class="detail-visual" style="border-color: rgba(245, 158, 11, 0.3);">
+                    <div class="corner-decor c-tl" style="border-color: var(--warning)"></div>
+                    <div class="corner-decor c-br" style="border-color: var(--warning)"></div>
+
+                    <div style="color: #444; font-family:'JetBrains Mono'">[ SCREENSHOT: FIREWALL RULES ]</div>
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-content" style="border-color: rgba(0, 242, 255, 0.3);">
+                    <h3 class="dc-title"><i class="fas fa-eye dc-icon"></i> Threat Detection (SIEM)</h3>
+                    <p class="dc-text">
+                        <strong>Wazuh</strong> is deployed to collect and correlate logs from all endpoints.
+                        Wazuh Agents are installed on both Windows 10 and Ubuntu clients.
+                        <br><br>
+                        I created custom decoders to detect specific attack vectors such as <strong>Mimikatz
+                            execution</strong>
+                        and <strong>PsExec lateral movement</strong>. The dashboard provides real-time visibility into
+                        the security posture.
+                    </p>
+                    <div class="dc-tags">
+                        <span class="dc-tag">Log Analysis</span>
+                        <span class="dc-tag">File Integrity Monitoring</span>
+                        <span class="dc-tag">Threat Hunting</span>
+                    </div>
+                </div>
+
+                <div class="detail-visual">
+                    <div class="corner-decor c-tl"></div>
+                    <div class="corner-decor c-br"></div>
+
+                    <div style="color: #444; font-family:'JetBrains Mono'">[ SCREENSHOT: WAZUH DASHBOARD ]</div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="../js/lab.js"></script>
+</body>
+
+</html>
