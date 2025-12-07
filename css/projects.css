@@ -1,0 +1,330 @@
+        /* --- TEMEL AYARLAR (Önceki kodların aynısı) --- */
+        :root {
+            --bg-dark: #050a14;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: #0f1623;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #network-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            z-index: 100;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            backdrop-filter: blur(15px);
+            background: rgba(18, 20, 23, 0.95);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .custom-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .menu-group-icon {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .menu-item i {
+            color: var(--primary);
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .menu-item:hover i {
+            transform: translateY(-2px);
+        }
+
+        /* Main */
+        main {
+            padding: 8rem 10% 4rem 10%;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 10px;
+            max-width: 600px;
+        }
+
+        /* Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        /* --- PROJECT CARD --- */
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            padding-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            /* Overflow hidden'ı kaldırdık ki video dışarı taşabilsin */
+            overflow: visible;
+            z-index: 1;
+        }
+
+        /* Hover Efekti */
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            /* Hover olunca kart öne çıksın */
+        }
+
+        /* --- VIDEO PREVIEW PANEL --- */
+        .video-preview {
+            position: absolute;
+            top: 0;
+            width: 320px;
+            /* Video genişliği */
+            height: 100%;
+            /* Kartın boyu kadar */
+            background: #000;
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            pointer-events: none;
+            /* Mouse etkileşimini engelle */
+            z-index: -1;
+            /* Kartın arkasında dursun */
+        }
+
+        .video-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .project-card.pos-left:hover .preview-panel {
+            opacity: 1;
+            visibility: visible;
+            /* Kartın sol tarafından çıkması için sağ kenarını kartın soluna yaslıyoruz */
+            right: 100%;
+            left: auto;
+            /* Sola doğru ötele */
+            transform: translateX(-20px) rotateY(-10deg);
+        }
+
+        /* Sağdaki Kart -> SAĞA Açılsın (Dışarı) */
+        .project-card.pos-right:hover .preview-panel {
+            opacity: 1;
+            visibility: visible;
+            /* Kartın sağından çıkması için sol kenarını kartın sağına yaslıyoruz */
+            left: 100%;
+            right: auto;
+            /* Sağa doğru ötele */
+            transform: translateX(20px) rotateY(10deg);
+        }
+
+        /* İçerik stilleri */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .folder-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .project-card:hover .folder-icon {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-btn {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            color: #fff;
+        }
+
+        .p-title {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .p-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .tech-item {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Status Pills */
+        .status-pill {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            border: 1px solid transparent;
+        }
+
+        .status-completed {
+            color: var(--success-color);
+            background-color: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .status-progress {
+            color: var(--warning-color);
+            background-color: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .video-preview {
+                display: none !important;
+            }
+
+            main {
+                padding: 7rem 5%;
+            }
+
+            .custom-menu {
+                display: none;
+            }
+        }
