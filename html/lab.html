@@ -153,9 +153,12 @@
         <br>
         <section class="lab-details-section">
             <h2 class="details-title">Architecture Deep Dive</h2>
-
             <div class="detail-row">
                 <div class="detail-content">
+                    <a href="active_directory.html" class="tech-btn" style="--btn-color: #449fb6;">
+                        <span class="btn-text">Deep Dive</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                     <h3 class="dc-title"><i class="fab fa-windows dc-icon"></i> Domain Controller </h3>
                     <p class="dc-text">
                         The backbone of the lab is a <strong>Windows Server 2022</strong> Domain Controller.
@@ -166,12 +169,6 @@
                         to disable Windows Defender on victim machines (for testing) and enforce audit logging for SIEM
                         ingestion.
                     </p>
-                    <div class="dc-tags">
-                        <span class="dc-tag">Kerberos</span>
-                        <span class="dc-tag">LDAP</span>
-                        <span class="dc-tag">DNS/DHCP</span>
-                        <span class="dc-tag">GPO Hardening</span>
-                    </div>
                 </div>
 
                 <div class="detail-visual slider-wrapper">
@@ -181,27 +178,21 @@
                     <div class="slider-track">
                         <img src="../images/AD.png" alt="AD Dashboard Main">
                     </div>
-
-                    <button class="slider-btn prev-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 2L2 10L10 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-
-                    <button class="slider-btn next-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L10 10L2 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
                 </div>
             </div>
 
             <div class="detail-row reverse">
-                <div class="detail-content" style="border-color: rgba(245, 158, 11, 0.3);">
-                    <h3 class="dc-title" style="color:#fff"><i class="fas fa-shield-virus"
-                            style="color:var(--warning)"></i> Firewall</h3>
+                <div class="detail-content" style="border-color: rgba(245, 158, 11, 0.3); position: relative;">
+
+                    <a href="opnsense.html" class="tech-btn" style="--btn-color: #bd7800;">
+                        <span class="btn-text">Deep Dive</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+
+                    <h3 class="dc-title" style="color:#fff">
+                        <i class="fas fa-shield-virus" style="color:var(--warning)"></i> Firewall
+                    </h3>
+
                     <p class="dc-text">
                         <strong>OPNSense</strong> acts as the gateway between the WAN and the isolated lab network.
                         It is configured with strict firewall rules to allow only necessary outbound traffic while
@@ -210,42 +201,23 @@
                         I enabled <strong>Suricata IPS</strong> in promiscuous mode to inspect lateral movement traffic
                         between the User VLAN and the Server VLAN.
                     </p>
-                    <div class="dc-tags">
-                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">VLAN
-                            Segmentation</span>
-                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">Suricata
-                            IPS</span>
-                        <span class="dc-tag" style="border-color:var(--warning); color:var(--warning)">Deep Packet
-                            Inspection</span>
-                    </div>
                 </div>
 
                 <div class="detail-visual slider-wrapper">
                     <div class="corner-decor c-tl"></div>
                     <div class="corner-decor c-br"></div>
-
                     <div class="slider-track">
                         <img src="../images/OPNSense.jpg" alt="OPNSENSE Firewall">
                     </div>
-
-                    <button class="slider-btn prev-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 2L2 10L10 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-
-                    <button class="slider-btn next-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L10 10L2 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
                 </div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-content" style="border-color: rgba(0, 242, 255, 0.3);">
+                    <a href="wazuh.html" class="tech-btn" style="--btn-color: #0d49ec;">
+                        <span class="btn-text">Deep Dive</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                     <h3 class="dc-title"><i class="fas fa-eye dc-icon"></i> SIEM Solution</h3>
                     <p class="dc-text">
                         <strong>Wazuh</strong> is deployed to collect and correlate logs from all endpoints.
@@ -256,11 +228,6 @@
                         and <strong>PsExec lateral movement</strong>. The dashboard provides real-time visibility into
                         the security posture.
                     </p>
-                    <div class="dc-tags">
-                        <span class="dc-tag">Log Analysis</span>
-                        <span class="dc-tag">File Integrity Monitoring</span>
-                        <span class="dc-tag">Threat Hunting</span>
-                    </div>
                 </div>
 
                 <div class="detail-visual slider-wrapper">
@@ -270,20 +237,6 @@
                     <div class="slider-track">
                         <img src="../images/Wazuh.jpg" alt="Wazuh">
                     </div>
-
-                    <button class="slider-btn prev-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 2L2 10L10 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-
-                    <button class="slider-btn next-btn">
-                        <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L10 10L2 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
                 </div>
             </div>
 

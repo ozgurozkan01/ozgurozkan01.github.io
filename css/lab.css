@@ -620,16 +620,6 @@
             transform: scale(1.02);
         }
 
-        .detail-visual:hover .slider-btn {
-            opacity: 1;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary);
-            color: #000;
-            box-shadow: 0 0 20px var(--primary);
-        }
-
         .prev-btn {
             left: 15px;
         }
@@ -637,50 +627,6 @@
         .next-btn {
             right: 15px;
         }
-
-        .detail-visual.slider-wrapper {
-            position: relative;
-            overflow: hidden;
-            padding: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .slider-track img {
-            min-width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(5, 10, 20, 0.8);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 1rem;
-            display: block;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
-        }
-
 
         .corner-decor {
             position: absolute;
@@ -886,4 +832,74 @@
             width: 800px;
             height: 100%;
             margin: 0 auto;
+        }
+
+        .detail-content {
+            position: relative !important;
+        }
+
+        .tech-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--btn-color);
+            border: 1px solid var(--btn-color);
+            border-top: none;
+            border-right: none;
+            clip-path: polygon(100% 0, 100% 100%, 15px 100%, 0 calc(100% - 15px), 0 0);
+
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            z-index: 10;
+
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tech-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 15px;
+            height: 1px;
+            background: var(--btn-color);
+            transform: rotate(-45deg);
+            transform-origin: bottom left;
+        }
+
+        .tech-btn:hover {
+            background: var(--btn-color);
+            color: #000;
+            padding-right: 25px;
+            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-btn i {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .tech-btn:hover i {
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 768px) {
+            .tech-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: fit-content;
+                margin-bottom: 15px;
+                clip-path: polygon(100% 0, 100% 70%, 90% 100%, 0 100%, 0 0);
+                border: 1px solid var(--btn-color);
+            }
         }
