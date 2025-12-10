@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 const rect = node.getBoundingClientRect();
-                const panelWidth = 600; 
-                const gap = 30;         
-                const screenPadding = 100; 
+                const panelWidth = 600;
+                const gap = 30;
+                const screenPadding = 100;
 
                 let leftPos = rect.right + gap;
 
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (leftPos < screenPadding) {
-                    leftPos = screenPadding; 
+                    leftPos = screenPadding;
                 } else if (leftPos + panelWidth > window.innerWidth - screenPadding) {
                     leftPos = window.innerWidth - panelWidth - screenPadding;
                 }
@@ -213,5 +213,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         panel.classList.remove('active');
+    });
+
+    const sliders = document.querySelectorAll('.slider-wrapper');
+
+    sliders.forEach(slider => {
+        const track = slider.querySelector('.slider-track');
+        const images = track.querySelectorAll('img');
+        const nextBtn = slider.querySelector('.next-btn');
+        const prevBtn = slider.querySelector('.prev-btn');
+
+        if (!track || images.length === 0) return;
+
+        let currentIndex = 0;
+        const totalImages = images.length;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                if (currentIndex < totalImages - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateSlider();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = totalImages - 1;
+                }
+                updateSlider();
+            });
+        }
     });
 });
