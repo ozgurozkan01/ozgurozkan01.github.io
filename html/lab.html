@@ -143,7 +143,7 @@
                     <div class="rm-icon"><i class="fas fa-fingerprint"></i></div>
                     <div class="rm-text">
                         <h4>IPS/IDS</h4>
-                        <p>Implementing IPS/IDS via OPNSense Firewall and Suricata.</p>
+                        <p>Implementing IPS/IDS via OPNSense Firewall</p>
                     </div>
                 </div>
             </div>
@@ -161,13 +161,17 @@
                     </a>
                     <h3 class="dc-title"><i class="fab fa-windows dc-icon"></i> Domain Controller </h3>
                     <p class="dc-text">
-                        The backbone of the lab is a <strong>Windows Server 2022</strong> Domain Controller.
-                        I configured realistic organizational units (OUs) reflecting a typical corporate hierarchy (HR,
-                        IT, Sales).
-                        <br><br>
-                        Key configurations include strictly defined <strong>Group Policy Objects (GPOs)</strong>
-                        to disable Windows Defender on victim machines (for testing) and enforce audit logging for SIEM
-                        ingestion.
+                        <strong>Active Directory</strong> is the backbone of an enterprise company, a powerful software used to
+                        <strong>authenticate</strong> users logging into the system and to plan the <strong>privileges and permissions</strong> of these
+                        users and the computers they log into.
+                        <br>
+                        <br>
+                        It is a software that facilitates <strong>file sharing</strong> across large enterprise companies, preventing
+                        file transfers to dozens of computers and providing convenience.
+                        <br>
+                        <br>
+                        For more detailed information, please review what I have done with Active Directory in the
+                        <strong>“Deep Dive”</strong>section.
                     </p>
                 </div>
 
@@ -194,12 +198,16 @@
                     </h3>
 
                     <p class="dc-text">
-                        <strong>OPNSense</strong> acts as the gateway between the WAN and the isolated lab network.
-                        It is configured with strict firewall rules to allow only necessary outbound traffic while
-                        blocking all non-VPN inbound connections.
-                        <br><br>
-                        I enabled <strong>Suricata IPS</strong> in promiscuous mode to inspect lateral movement traffic
-                        between the User VLAN and the Server VLAN.
+                        <strong>OPNSense</strong> is a default gateway that acts as a gateway between internal and
+                        external networks and is responsible for the security of the internal network. With the help of
+                        add-on packages,
+                        <strong>IPS/IDS and NGFW</strong> features can be added. There is also an additional feature
+                        that enables <strong>VPN</strong>
+                        usage.
+                        <br>
+                        <br>
+                        For more detailed information, please review what I have done with OPNSense Firewall in the
+                        <strong>“Deep Dive”</strong>section.
                     </p>
                 </div>
 
@@ -220,13 +228,15 @@
                     </a>
                     <h3 class="dc-title"><i class="fas fa-eye dc-icon"></i> SIEM Solution</h3>
                     <p class="dc-text">
-                        <strong>Wazuh</strong> is deployed to collect and correlate logs from all endpoints.
-                        Wazuh Agents are installed on both Windows 10 and Ubuntu clients.
-                        <br><br>
-                        I created custom decoders to detect specific attack vectors such as <strong>Mimikatz
-                            execution</strong>
-                        and <strong>PsExec lateral movement</strong>. The dashboard provides real-time visibility into
-                        the security posture.
+                        This page contains content explaining the architecture and security approaches I implement
+                        within <strong>Wazuh</strong>, which I use in my Corporate Security Lab. In my own project, it
+                        allows me to pull
+                        logs from Ubuntu and Windows Clients, Active Directory, and Firewall devices, enabling me to see
+                        detailed information about my system and correlate between them.
+                        <br>
+                        <br>
+                        For more detailed information, please review what I have done with Wazuh in the <strong>“Deep
+                            Dive”</strong> section.
                     </p>
                 </div>
 
