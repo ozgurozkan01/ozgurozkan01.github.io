@@ -76,3 +76,142 @@ function animateParticles() {
 
 initParticles(); animateParticles();
 window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const nodes = document.querySelectorAll('.node');
+    const panel = document.getElementById('nodeDetailPanel');
+    const pSubtitle = document.getElementById('ndSubtitle');
+    const pTitle = document.getElementById('ndTitle');
+    const pIcon = document.getElementById('ndIcon');
+    const pDesc = document.getElementById('ndDesc');
+    const pFeatures = document.getElementById('ndFeatures');
+    const pTags = document.getElementById('ndTags');
+
+    const nodeDetails = {
+        opnsense: {
+            type: "Perimeter Security",
+            title: "OPNsense Firewall",
+            icon: "fas fa-shield-alt",
+            desc: "",
+            features: [],
+            tags: [],
+            color: "#f39c12"
+        },
+        win10: {
+            type: "Endpoint",
+            title: "Windows 10 Client",
+            icon: "fas fa-desktop",
+            desc: "",
+            features: [],
+            tags: ["Wazuh Agent", "Sysmon"],
+            color: "#2980b9"
+        },
+        ubuntu: {
+            type: "Endpoint",
+            title: "Ubuntu Client",
+            icon: "fab fa-linux",
+            desc: "",
+            features: [],
+            tags: ["Wazuh Agent", "Auditd"],
+            color: "#f1c40f"
+        },
+        wazuh: {
+            type: "SIEM",
+            title: "Wazuh Manager",
+            icon: "fas fa-eye",
+            desc: "The brain of the security lab. It aggregates logs, correlates events, and generates alerts based on custom detection rules.",
+            features: ["Wrote custom rules to improve security", "Advanced log analyzer with Auditd, Sysmon, AD GPO"],
+            tags: [],
+            color: "#3498db"
+        },
+        ad: {
+            type: "Domain Controller",
+            title: "Active Directory",
+            icon: "fab fa-windows",
+            desc: "Windows Server 2022 acting as the Domain Controller. It manages authentication, authorization, and network policy enforcement.",
+            features: ["Designed better hierarchical OU skeleton", "Created OUs: HR, IT", "Improved Login/logoff Policy", "Created GPO for Advanced Log System"],
+            tags: ["Kerberos", "LDAP", "GPO", "DNS/DHCP"],
+            color: "#27ae60"
+        }
+    };
+
+    nodes.forEach(node => {
+        node.addEventListener('mouseenter', (e) => {
+            const id = node.getAttribute('data-id');
+            if (nodeDetails[id]) {
+                const data = nodeDetails[id];
+
+                pSubtitle.textContent = data.type;
+                pTitle.textContent = data.title;
+                pIcon.className = `${data.icon} nd-icon`;
+                pIcon.style.color = data.color || '#cbd5e0';
+                pDesc.textContent = data.desc;
+
+                panel.style.borderLeftColor = data.color || '#4a5568';
+                const fsTitle = document.querySelector('.nd-fs-title');
+                if (fsTitle) fsTitle.style.color = data.color || '#a0aec0';
+
+                pFeatures.innerHTML = '';
+                if (data.features && data.features.length > 0) {
+                    data.features.forEach(feat => {
+                        const li = document.createElement('li');
+                        li.textContent = feat;
+                        pFeatures.appendChild(li);
+                    });
+                    const styleSheet = document.createElement("style");
+                    styleSheet.innerText = `#ndFeatures li::before { color: ${data.color || '#4a5568'}; }`;
+                    pFeatures.appendChild(styleSheet);
+                }
+
+                pTags.innerHTML = '';
+                data.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'nd-tag';
+                    span.textContent = tag;
+                    span.style.borderColor = data.color ? data.color + '40' : '#2d3748';
+                    pTags.appendChild(span);
+                });
+
+                const rect = node.getBoundingClientRect();
+                const panelWidth = 600; 
+                const gap = 30;         
+                const screenPadding = 100; 
+
+                let leftPos = rect.right + gap;
+
+                if (leftPos + panelWidth > window.innerWidth - screenPadding) {
+                    leftPos = rect.left - gap - panelWidth;
+                }
+
+                if (leftPos < screenPadding) {
+                    leftPos = screenPadding; 
+                } else if (leftPos + panelWidth > window.innerWidth - screenPadding) {
+                    leftPos = window.innerWidth - panelWidth - screenPadding;
+                }
+
+                let topPos = rect.top - 20;
+                const estimatedHeight = 450;
+
+                if (topPos + estimatedHeight > window.innerHeight - screenPadding) {
+                    topPos = window.innerHeight - estimatedHeight - screenPadding;
+                }
+                if (topPos < screenPadding) {
+                    topPos = screenPadding;
+                }
+
+                panel.style.left = `${leftPos}px`;
+                panel.style.top = `${topPos}px`;
+                panel.classList.add('active');
+
+            }
+        });
+
+        node.addEventListener('mouseleave', () => {
+            panel.classList.remove('active');
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        panel.classList.remove('active');
+    });
+});

@@ -620,7 +620,6 @@
             transform: scale(1.02);
         }
 
-        /* Köşe Süslemeleri (Tech Vibe) */
         .corner-decor {
             position: absolute;
             width: 20px;
@@ -657,4 +656,172 @@
                 width: 100%;
                 min-height: 200px;
             }
+        }
+
+        .node-detail-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 600px;
+            min-height: 300px;
+            box-sizing: border-box;
+            background: #0f131a;
+            border: 1px solid #2d3748;
+            border-left: 6px solid #4a5568;
+
+            padding: 35px;
+            border-radius: 12px;
+
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 9999;
+        }
+
+        .node-detail-panel.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nd-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            border-bottom: 2px solid #2d3748;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .nd-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nd-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #718096;
+            font-weight: 700;
+        }
+
+        .nd-title {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .nd-icon {
+            font-size: 2.5rem;
+            color: #4a5568;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nd-content {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #cbd5e0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .nd-features-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .nd-fs-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: #a0aec0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .nd-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .nd-features-list li {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .nd-features-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .nd-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .nd-tag {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #2d3748;
+        }
+
+        .node-label {
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4px 8px;
+            border-radius: 4px;
+
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+
+            width: auto;
+            white-space: nowrap;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .topology-map-wrapper {
+            position: relative;
+            width: 800px;
+            height: 100%;
+            margin: 0 auto;
         }
