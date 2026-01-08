@@ -10,9 +10,9 @@ const bootSequence = [
     { text: "+ Crazy about building projects", type: 'log', delay: 800 },
     { text: "+ Loves to remain original", type: 'log', delay: 800 },
     { text: "./current_mission.sh", type: 'cmd', delay: 1000 },
-    { text: "+ Improving mini local SIEM based on linux.", type: 'log', delay: 800 },
+    { text: "+ Improving mini local SIEM and Honeypot based on linux.", type: 'log', delay: 800 },
     { text: "+ Creating a corporate company security system lab.", type: 'log', delay: 800 },
-    { text: "+ Learning python, linux and sometimes C++", type: 'log', delay: 800 },
+    { text: "+ Learning python, golang, linux and sometimes C++", type: 'log', delay: 800 },
     { text: "_", type: 'cursor' }
 ];
 
