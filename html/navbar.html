@@ -1,172 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    /* Brutalist Navbar Styles */
+    :root {
+        --nav-bg: #f4f4f0;
+        --nav-text: #111111;
+        --nav-accent: #ff4500;
+        --nav-border: #111111;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        z-index: 100;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background-color: var(--nav-bg);
+        border-bottom: 3px solid var(--nav-border);
+    }
 
-<body>
-    <style>
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-        }
+    .logo {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--nav-text);
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
 
-        .logo span {
-            color: var(--primary);
-        }
+    .logo span {
+        color: var(--nav-accent);
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 5%;
-            z-index: 100;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            backdrop-filter: blur(15px);
-            background: rgba(18, 20, 23, 0.95);
-            border-bottom: 1px solid var(--border-color);
-        }
+    .custom-menu {
+        display: flex;
+        align-items: center;
+    }
 
-        .custom-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
+    .menu-group-icon {
+        display: flex;
+        gap: 2rem;
+    }
 
-        .menu-group-text {
-            display: flex;
-            gap: 1.5rem;
-        }
+    .menu-item {
+        text-decoration: none;
+        color: var(--nav-text);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0px;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+    }
 
-        .nav-link {
-            text-decoration: none;
-            color: #F2F2F2;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    .menu-item i {
+        color: var(--nav-text);
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
+    }
 
-        .nav-link:hover {
-            color: var(--text-main);
-        }
+    .menu-item:hover {
+        color: var(--nav-accent);
+        border-bottom: 3px solid var(--nav-accent);
+    }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background-color: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
+    .menu-item:hover i {
+        color: var(--nav-accent);
+    }
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
+    .social-icon-only {
+        padding: 6px 4px;
+    }
 
+    .social-icon-only i {
+        font-size: 1.2rem;
+    }
 
-        .menu-divider {
-            width: 1px;
-            height: 25px;
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-
+    @media (max-width: 768px) {
         .menu-group-icon {
-            display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
-        .menu-item {
-            text-decoration: none;
-            color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            padding: 6px 12px;
-            border-radius: 6px;
+        .menu-item span {
+            display: none;
+            /* Hide text on very small screens, keep icons */
         }
 
-        .menu-item i {
-            color: var(--primary);
-            font-size: 1rem;
-            transition: transform 0.3s ease;
+        .logo {
+            font-size: 1.2rem;
         }
+    }
+</style>
 
-        .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #fff;
-        }
+<nav>
+    <div class="logo">Ozgur<span>OZKAN</span></div>
 
-        .menu-item:hover i {
-            transform: translateY(-2px);
-        }
+    <div class="custom-menu">
+        <div class="menu-group-icon">
+            <a href="/index.html" class="menu-item">
+                <i class="fas fa-home"></i> <span>HOME</span>
+            </a>
 
-        :root {
-            --bg-dark: #050a14;
-            --primary: #00f2ff;
-        }
+            <a href="/html/about.html" class="menu-item">
+                <i class="fas fa-user-secret"></i> <span>ABOUT</span>
+            </a>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            <a href="/html/projects.html" class="menu-item">
+                <i class="fas fa-terminal"></i> <span>PROJECTS</span>
+            </a>
 
-        body {
-            background-color: var(--bg-dark);
-            height: 100vh;
-            width: 100vw;
-        }
-
-        #network-canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-
-
-    <nav>
-        <div class="logo">Ozgur@<span>OZKAN</span>:~#</div>
-
-        <div class="custom-menu">
-            <div class="menu-group-icon">
-                <a href="../index.html" class="menu-item">
-                    <i class="fas fa-home"></i> HOME
-                </a>
-
-                <a href="../html/about.html" class="menu-item">
-                    <i class="fas fa-user-secret"></i> ABOUT
-                </a>
-
-                <a href="../html/projects.html" class="menu-item">
-                    <i class="fas fa-terminal"></i> PROJECTS
-                </a>
-                <a href="../html/lab.html" class="menu-item">
-                    <i class="fas fa-flask"></i> LAB
-                </a>
-            </div>
+            <a href="/html/lab.html" class="menu-item">
+                <i class="fas fa-flask"></i> <span>LAB</span>
+            </a>
         </div>
-    </nav>
-</body>
-</html>
+    </div>
+</nav>

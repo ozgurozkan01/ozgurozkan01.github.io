@@ -1,270 +1,260 @@
-        /* --- GLOBAL DEĞİŞKENLER (MATTE THEME) --- */
-        :root {
-            --bg-dark: #050a14;
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --text-main: #e2e8f0;
-            --text-muted: #64748b;
-            --card-bg: rgba(20, 30, 50, 0.5);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent: #1d59ca;
-            --accent2: #00c896;
-            --signature: #2072b6;
-        }
+:root {
+    /* Brutalist Color Palette */
+    --bg-base: #f4f4f0;
+    /* Warm off-white */
+    --text-primary: #111111;
+    /* Staring black */
+    --text-secondary: #555555;
+    /* Medium gray */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    --accent-vivid: #ff4500;
+    /* Brutalist Orange */
+    --accent-dark: #191919;
+    /* Near Black */
+    --terminal-green: #00ff00;
+    /* Classic CLI green */
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    --font-heading: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
 
-        /* --- ARKA PLAN --- */
-        #network-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    height: 100vh;
+    /* Lock body height */
+    display: flex;
+    flex-direction: column;
+}
 
+/* Remove canvas */
+#network-canvas {
+    display: none;
+}
 
-        .about-section {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            /* Sol ve Sağ oran */
-            gap: 4rem;
-            padding: 140px 10% 4rem;
-            align-items: center;
-        }
+/* Main Grid Architecture */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 7rem 6% 2rem;
+    /* Reduced top padding significantly */
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+    /* keep centered vertically within the grid if it's smaller, otherwise start */
+    flex-grow: 1;
+    /* take up remaining height if navbar is fixed, but let's just let it flow */
+    height: calc(100vh - 80px);
+    /* Fill remaining viewport explicitly */
+}
 
-        /* SOL: PROFILE INFO */
-        .profile-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
+/* --- LEFT SIDE: TYPOGRAPHY --- */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
 
-        .profile-content .subtitle {
-            font-family: 'JetBrains Mono';
-            color: var(--primary);
-            font-size: 1.1rem;
-            display: block;
-            margin-bottom: 2rem;
-        }
+.headline {
+    font-size: clamp(3rem, 4.5vw, 5rem);
+    /* Adjusted for single line */
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+}
 
-        .profile-content p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
+.status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    background-color: var(--accent-vivid);
+    padding: 6px 12px;
+    border: 3px solid var(--text-primary);
+    width: fit-content;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px var(--text-primary);
+}
 
-        .social-row {
-            display: flex;
-            gap: 15px;
-        }
+.story-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Tighter gap between paragraphs */
+}
 
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 1.3rem;
-            transition: 0.3s;
-        }
+.story-text p {
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 650px;
+}
 
-        .social-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
+.story-text .final-goal {
+    font-size: clamp(1rem, 1.1vw, 1.15rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+    padding-left: 1.2rem;
+    border-left: 4px solid var(--accent-vivid);
+}
 
-        .terminal-wrapper {
-            width: 100%;
-            max-width: 650px;
-            background: #0d1117;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            font-family: 'JetBrains Mono', monospace;
-        }
+/* Highlights */
+.highlight-orange {
+    color: var(--accent-vivid);
+    font-weight: 800;
+}
 
-        .terminal-bar {
-            background: #161b22;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+.highlight-dark {
+    color: var(--text-primary);
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--accent-vivid);
+}
 
-        .t-title {
-            font-size: 0.8rem;
-            color: #8b949e;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.highlight-block {
+    background-color: var(--text-primary);
+    color: var(--bg-base);
+    padding: 2px 8px;
+    font-weight: 800;
+}
 
-        .terminal-screen {
-            padding: 25px;
-            height: 400px;
-            color: #e2e8f0;
-            font-size: 0.95rem;
-            overflow-y: auto;
-            position: relative;
-        }
+/* --- RIGHT SIDE: BRUTALIST TERMINAL --- */
+.terminal-wrapper {
+    width: 100%;
+    max-width: 700px;
+    background: var(--text-primary);
+    border: 3px solid var(--text-primary);
+    box-shadow: 12px 12px 0px var(--accent-vivid);
+    /* Brutalist offset shadow */
+    font-family: var(--font-mono);
+}
 
-        /* Scrollbar Gizleme */
-        .terminal-screen::-webkit-scrollbar {
-            display: none;
-        }
+.terminal-bar {
+    background: var(--bg-base);
+    border-bottom: 3px solid var(--text-primary);
+    padding: 10px 15px;
+    /* Slightly tighter */
+    display: flex;
+    align-items: center;
+}
 
-        /* Terminal Renkleri (JS için gerekli) */
-        .log-line {
-            margin-bottom: 12px;
-            display: block;
-            line-height: 1.6;
-        }
+.t-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        .txt-cmd {
-            color: var(--primary);
-            font-weight: bold;
-        }
+.terminal-screen {
+    padding: 20px 25px;
+    /* Tighter padding */
+    height: 380px;
+    /* Reduced terminal height */
+    background-color: var(--accent-dark);
+    color: var(--bg-base);
+    font-size: 0.9rem;
+    overflow-y: auto;
+    position: relative;
+}
 
-        .txt-dim {
-            color: #64748b;
-        }
+/* Scrollbar Hiding */
+.terminal-screen::-webkit-scrollbar {
+    display: none;
+}
 
-        .txt-green {
-            color: #00ff9d;
-        }
+/* Terminal JS Output Styles */
+.log-line {
+    margin-bottom: 12px;
+    /* Tighter line spacing */
+    display: block;
+    line-height: 1.5;
+}
 
-        .txt-cyan {
-            color: var(--primary);
-        }
+.txt-green {
+    color: var(--terminal-green);
+    font-weight: 700;
+}
 
-        .blink-cursor {
-            animation: blink 1s infinite;
-            font-weight: bold;
-            color: var(--primary);
-        }
+.txt-orange {
+    color: var(--accent-vivid);
+    font-weight: 700;
+}
 
-        @keyframes blink {
+.txt-cmd {
+    color: var(--bg-base);
+    font-weight: 700;
+}
 
-            0%,
-            100% {
-                opacity: 1;
-            }
+.txt-dim {
+    color: #aaaaaa;
+    margin-left: 20px;
+}
 
-            50% {
-                opacity: 0;
-            }
-        }
+.blink-cursor {
+    animation: blink 1s infinite;
+    font-weight: bold;
+    color: var(--bg-base);
+}
 
-        /* Scanline Efekti */
-        .scanline {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 242, 255, 0.1);
-            animation: scan 6s linear infinite;
-            pointer-events: none;
-        }
+@keyframes blink {
 
-        @keyframes scan {
-            0% {
-                top: 0%;
-                opacity: 0;
-            }
+    0%,
+    100% {
+        opacity: 1;
+    }
 
-            50% {
-                opacity: 1;
-            }
+    50% {
+        opacity: 0;
+    }
+}
 
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
+/* Responsive */
+@media (max-width: 1100px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
 
-        /* Mobil */
-        @media (max-width: 900px) {
-            .about-section {
-                grid-template-columns: 1fr;
-                padding-top: 120px;
-                text-align: center;
-            }
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding-top: 6rem;
+        height: auto;
+    }
 
-            .social-row {
-                justify-content: center;
-            }
+    .terminal-wrapper {
+        margin: 0 auto;
+    }
+}
 
-            .nav-links {
-                display: none;
-            }
-        }
+@media (max-width: 768px) {
+    .headline {
+        font-size: 3.5rem;
+    }
 
-        .about {
-            line-height: 1.6;
-            font-size: 1rem;
-            color: #dbe9f8;
-            /* hafif açık text, dark arka plan için */
-        }
-
-        /* Primary highlights: technologies / domains */
-        .accent {
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-            transition: color .15s ease, transform .12s ease;
-        }
-
-        .accent:hover {
-            transform: translateY(-1px);
-        }
-
-        /* Secondary highlights: personal traits / originality */
-        .accent2 {
-            color: var(--accent2);
-            font-weight: 600;
-        }
-
-        /* Final signature emphasis */
-        .signature {
-            color: var(--accent);
-            font-weight: 700;
-            background: rgba(0, 242, 255, 0.04);
-            /* subtle glow */
-            padding: 0 .15rem;
-            border-radius: 4px;
-        }
-
-        /* Responsive tweak: slightly larger text on wide screens */
-        @media (min-width: 1000px) {
-            .about {
-                font-size: 1.05rem;
-            }
-        }
+    .terminal-screen {
+        height: 300px;
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+}
