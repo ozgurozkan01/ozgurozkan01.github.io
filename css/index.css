@@ -86,7 +86,7 @@ body {
 }
 
 .headline {
-    font-size: clamp(4rem, 8vw, 9rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -4px;
@@ -235,9 +235,17 @@ body {
 }
 
 /* Grid Adjustments for 3 items (Centered Layout) */
-#box-network { grid-column: span 2; }
-#box-dev { grid-column: span 2; }
-#box-linux { grid-column: 2 / span 2; }
+#box-network {
+    grid-column: span 2;
+}
+
+#box-dev {
+    grid-column: span 2;
+}
+
+#box-linux {
+    grid-column: 2 / span 2;
+}
 
 /* Responsive Breaks */
 @media (max-width: 1200px) {
